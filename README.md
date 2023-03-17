@@ -9,7 +9,7 @@
 
 https://getbootstrap.jp/
 
-## merge-images
+## merge-images (不採用)
 
 画像連結用  
 使い方がわからない……使用を諦める  

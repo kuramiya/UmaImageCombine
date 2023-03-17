@@ -13,13 +13,23 @@
     <body>
 
         <div class="container">
-            <div class="row">
+            <div class="row m-2">
                 <div class="col">
                     <h1>UmaImageCombine</h1>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
+            <div class="row m-2">
+                <div class="col-auto g-3">
+                    <div class="input-group">
+                        <label class="input-group-text" for="canvasSizeSelect">画像サイズ</label>
+                        <select class="form-select" id="canvasSizeSelect">
+                            <option value="600" selected>600</option>
+                            <option value="900">900</option>
+                            <option value="1200">1200</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-auto g-3">
                     <div class="input-group">
                         <label class="input-group-text" for="rowCountSelect">横サイズ</label>
                         <select class="form-select" id="rowCountSelect">
@@ -30,7 +40,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-auto g-3">
                     <div class="input-group">
                         <label class="input-group-text" for="columnCountSelect">縦サイズ</label>
                         <select class="form-select" id="columnCountSelect">
@@ -42,8 +52,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
+            <div class="row m-2">
+                <div class="col-auto">
                     <canvas id="combinedImage" width="600" height="600"></canvas>
                 </div>
             </div>
