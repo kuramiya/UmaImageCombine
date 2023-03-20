@@ -54,7 +54,7 @@ function showImages(ctx)
             let image = new Image();
             image.src = imageArray[tagName];
             image.onload = () => {
-                ctx.drawImage(image, rowIndex * baseSize_px , colIndex * baseSize_px, baseSize_px, baseSize_px);
+                ctx.drawImage(image, colIndex * baseSize_px , rowIndex * baseSize_px, baseSize_px, baseSize_px);
             };
         }
     }
@@ -73,11 +73,12 @@ function canvasSizeChange(e)
     updateCanvas();
 }
 
-//  数コンボボックスが変更された時の処理
+//  行数コンボボックスが変更された時の処理
 function rowCountChange(e)
 {
     currentRowCount = parseInt(e.target.value);
 
+    updateButtons();
     updateCanvas();
 }
 
@@ -86,6 +87,7 @@ function columnCountChange(e)
 {
     currentColumnCount = parseInt(e.target.value);
 
+    updateButtons();
     updateCanvas();
 }
 
@@ -111,6 +113,29 @@ function updateCanvas()
     const ctx = board.getContext("2d");
 
     showImages(ctx);
+}
+
+//  画像選択ボタンを更新する処理
+function updateButtons()
+{
+    for (let rowIndex = 0; rowIndex < maxRowCount; rowIndex++)
+    {
+        for (let colIndex = 0; colIndex < maxColumnCount; colIndex++)
+        {
+            let id = "#row" + rowIndex + "column" + colIndex + "button";
+
+            let button = document.querySelector(id);
+
+            if(rowIndex < currentRowCount && colIndex < currentColumnCount)
+            {
+                button.className = "col p-3 btn btn-outline-primary visible";
+            }
+            else
+            {
+                button.className = "col p-3 btn btn-outline-primary invisible";
+            }
+        }
+    }
 }
 
 //  イベント登録

@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-auto g-3">
                     <div class="input-group">
-                        <label class="input-group-text" for="rowCountSelect">横サイズ</label>
+                        <label class="input-group-text" for="rowCountSelect">行サイズ</label>
                         <select class="form-select" id="rowCountSelect">
                             <option value="1">1</option>
                             <option value="2" selected>2</option>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-auto g-3">
                     <div class="input-group">
-                        <label class="input-group-text" for="columnCountSelect">縦サイズ</label>
+                        <label class="input-group-text" for="columnCountSelect">列サイズ</label>
                         <select class="form-select" id="columnCountSelect">
                             <option value="1">1</option>
                             <option value="2" selected>2</option>
@@ -52,13 +52,23 @@
                     </div>
                 </div>
             </div>
-            <div class="row m-2">
-                <div class="col-auto">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Launch demo modal
-                    </button>
-                </div>
+            <div class="row m-3 row-cols-4">
+                <button id="row0column0button" type="button" class="col p-3 btn btn-outline-primary visible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row0column1button" type="button" class="col p-3 btn btn-outline-primary visible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row0column2button" type="button" class="col p-3 btn btn-outline-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row0column3button" type="button" class="col p-3 btn btn-outline-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row1column0button" type="button" class="col p-3 btn btn-outline-primary visible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row1column1button" type="button" class="col p-3 btn btn-outline-primary visible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row1column2button" type="button" class="col p-3 btn btn-outline-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row1column3button" type="button" class="col p-3 btn btn-outline-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row2column0button" type="button" class="col p-3 btn btn-outline-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row2column1button" type="button" class="col p-3 btn btn-outline-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row2column2button" type="button" class="col p-3 btn btn-outline-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row2column3button" type="button" class="col p-3 btn btn-outline-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row3column0button" type="button" class="col p-3 btn btn-outline-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row3column1button" type="button" class="col p-3 btn btn-outline-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row3column2button" type="button" class="col p-3 btn btn-outline-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
+                <button id="row3column3button" type="button" class="col p-3 btn btn-outline-primary invisible" data-bs-toggle="modal" data-bs-target="#exampleModal">空白</button>
             </div>
             <div class="row m-2">
                 <div class="col-auto">
@@ -79,8 +89,8 @@
                 ...
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="p-3 btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="p-3 btn btn-outline-primary">Save changes</button>
                 </div>
             </div>
             </div>
