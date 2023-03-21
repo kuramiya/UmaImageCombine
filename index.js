@@ -20,11 +20,28 @@ let clickedCharacterSelectButtonId = "";
 //  row0column0といった名前で保存する
 //  まずはnull画像で初期化しておく
 let imageArray = {};
-for (let rowIndex = 0; rowIndex < maxRowCount; rowIndex++)
+initCanvas();
+
+//  キャンバス設定を初期化する処理
+function initCanvas()
 {
-    for (let columnIndex = 0; columnIndex < maxColumnCount; columnIndex++)
+    for (let rowIndex = 0; rowIndex < maxRowCount; rowIndex++)
     {
-        imageArray["row" + rowIndex + "column" + columnIndex] = "./image/null.png";        
+        for (let columnIndex = 0; columnIndex < maxColumnCount; columnIndex++)
+        {
+            imageArray["row" + rowIndex + "column" + columnIndex] = "./image/null.png";
+        }
+    }
+}
+
+//  キャラ選択モーダルボタンを表示をすべてクリアする処理
+function clearCharacterSelectButtons()
+{
+    let characterSelectButtonsRow = document.querySelector("#characterSelectButtonsRow");
+    let characterSelectButtons = characterSelectButtonsRow.querySelectorAll("button");
+    for(let button of characterSelectButtons)
+    {
+        button.textContent = "空白"
     }
 }
 
@@ -87,6 +104,15 @@ function changeColumnCount(e)
     currentColumnCount = parseInt(e.target.value);
 
     updateButtons();
+    updateCanvas();
+}
+
+//  選択状態をクリアする処理
+function clearSelect(e)
+{
+    initCanvas();
+    clearCharacterSelectButtons();
+
     updateCanvas();
 }
 
@@ -179,12 +205,17 @@ function selectCharacter(e)
     let tagName = clickedCharacterSelectButtonId.replace("button", "");
 
     imageArray[tagName] = imgElement.src;
+
+    let paths = imgElement.src.split("/");
+
+    document.querySelector("#" + clickedCharacterSelectButtonId).textContent = paths[paths.length - 1].replace(".png", "");
 }
 
 //  イベント登録
 document.querySelector("#canvasSizeSelect").addEventListener("change", changeCanvasMaxSize, false); 
 document.querySelector("#rowCountSelect").addEventListener("change", changeRowCount, false); 
 document.querySelector("#columnCountSelect").addEventListener("change", changeColumnCount, false); 
+document.querySelector("#clearSelectButton").addEventListener("click", clearSelect, false); 
 // document.querySelector("#outputCanvas").addEventListener("click", canvasClick, false);
 document.querySelector("#exampleModal").addEventListener("shown.bs.modal", setCharacterPosition, false);
 document.querySelector("#exampleModal").addEventListener("hidden.bs.modal", updateCanvas, false);
