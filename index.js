@@ -54,6 +54,10 @@ function showImages()
     //  キャンバスをクリアする
     ctx.clearRect(0, 0, currentCanvasMaxSize_px, currentCanvasMaxSize_px);
 
+    //  キャンバスの背景を白く塗っておく
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, currentCanvasMaxSize_px, currentCanvasMaxSize_px);
+
     let rowSize_px = currentCanvasMaxSize_px / currentRowCount;
     let colSize_px = currentCanvasMaxSize_px / currentColumnCount;
     let baseSize_px = 0;
