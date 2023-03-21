@@ -13,15 +13,18 @@ let currentRowCount = 2;
 //  現在の列数
 let currentColumnCount = 2;
 
+//  クリックされたキャラ選択ボタンのID
+let clickedCharacterSelectButtonId = "";
+
 //  画像配置用の連想配列
-//  row0col0といった名前で保存する
+//  row0column0といった名前で保存する
 //  まずはnull画像で初期化しておく
 let imageArray = {};
 for (let rowIndex = 0; rowIndex < maxRowCount; rowIndex++)
 {
     for (let columnIndex = 0; columnIndex < maxColumnCount; columnIndex++)
     {
-        imageArray["row" + rowIndex + "col" + columnIndex] = "/image/null.png";        
+        imageArray["row" + rowIndex + "column" + columnIndex] = "./image/null.png";        
     }
 }
 
@@ -50,7 +53,7 @@ function showImages()
     {
         for (let colIndex = 0; colIndex < currentColumnCount; colIndex++)
         {
-            let tagName = "row" + rowIndex + "col" + colIndex;
+            let tagName = "row" + rowIndex + "column" + colIndex;
 
             let image = new Image();
             image.src = imageArray[tagName];
@@ -153,11 +156,45 @@ function updateButtons()
     }
 }
 
+//  キャラ選択モーダル呼び出し時の処理
+//  キャラを配置する場所を設定する
+function setCharacterPosition(e)
+{
+    clickedCharacterSelectButtonId = e.relatedTarget.id;
+}
+
+//  キャラが選択された時の処理
+function selectCharacter(e)
+{
+    let imgElement;
+    if(e.target.tagName == "IMG")
+    {
+        imgElement = e.target;
+    }
+    else
+    {
+        imgElement = e.target.firstChild;
+    }
+
+    let tagName = clickedCharacterSelectButtonId.replace("button", "");
+
+    imageArray[tagName] = imgElement.src;
+}
+
 //  イベント登録
 document.querySelector("#canvasSizeSelect").addEventListener("change", changeCanvasMaxSize, false); 
 document.querySelector("#rowCountSelect").addEventListener("change", changeRowCount, false); 
 document.querySelector("#columnCountSelect").addEventListener("change", changeColumnCount, false); 
 // document.querySelector("#outputCanvas").addEventListener("click", canvasClick, false);
+document.querySelector("#exampleModal").addEventListener("shown.bs.modal", setCharacterPosition, false);
+document.querySelector("#exampleModal").addEventListener("hidden.bs.modal", updateCanvas, false);
+
+let characterButtonsRow = document.querySelector("#characterButtonsRow");
+let characterButtons = characterButtonsRow.querySelectorAll("button");
+for(let button of characterButtons)
+{
+    button.addEventListener("click", selectCharacter, false);
+}
 
 window.onload = () =>
 {
