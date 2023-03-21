@@ -5,7 +5,7 @@ const maxRowCount = 4;
 const maxColumnCount = 4;
 
 //  現在のキャンバスサイズ
-let currentCanvasMaxSize_px = 600;
+let currentCanvasMaxSize_px = 450;
 
 //  現在の行数
 let currentRowCount = 2;
@@ -77,6 +77,7 @@ function showImages()
             let tagName = "row" + rowIndex + "column" + colIndex;
 
             let image = new Image();
+            image.crossOrigin = "anonymous";
             image.src = imageArray[tagName];
             image.onload = () => {
                 ctx.drawImage(image, colIndex * baseSize_px , rowIndex * baseSize_px, baseSize_px, baseSize_px);
@@ -225,8 +226,9 @@ function selectCharacter(e)
 //  キャンバス画像をダウンロードする
 function downloadImage(e)
 {
-    const a = document.createElement("a");
-    a.href = document.querySelector("#outputCanvas").toDataURL("image/png", 1); // PNGなら"image/png"
+    let canvas = document.querySelector("#outputCanvas");
+    let a = document.createElement("a");
+    a.href = canvas.toDataURL("image/png", 1);
     a.download = "uma.png";
     a.click();
 }
