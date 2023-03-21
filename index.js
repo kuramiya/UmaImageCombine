@@ -29,7 +29,7 @@ function initCanvas()
     {
         for (let columnIndex = 0; columnIndex < maxColumnCount; columnIndex++)
         {
-            imageArray["row" + rowIndex + "column" + columnIndex] = "./image/null.png";
+            imageArray["row" + rowIndex + "column" + columnIndex] = "./image/空白.png";
         }
     }
 }
@@ -208,7 +208,14 @@ function selectCharacter(e)
 
     let paths = imgElement.src.split("/");
 
-    document.querySelector("#" + clickedCharacterSelectButtonId).textContent = paths[paths.length - 1].replace(".png", "");
+    let characterName = paths[paths.length - 1].replace(".png", "");
+
+    if(characterName.substr(0, 1) == "%")
+    {
+        characterName = decodeURI(characterName);
+    }
+
+    document.querySelector("#" + clickedCharacterSelectButtonId).textContent = characterName;
 }
 
 //  イベント登録

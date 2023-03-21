@@ -34,11 +34,6 @@ https://qiita.com/tenten0213/items/7ca15ce8b54acc3b5719
 
 結局別途呼び出しボタンの項目を用意することにした。
 
-### 画像ボタンとポップアップ画面の決定
-
-
-
-
 ## merge-images (不採用)
 
 画像連結用  
@@ -53,3 +48,11 @@ https://www.npmjs.com/package/merge-images
   - 最大4x4
 - 画像を押すことで、ポップアップ画面を表示し、選択する画像を選べるようにする
 - 画像を検索可能にする（できれば）
+
+## 画像について
+
+ポジショニングマップのものを使用する
+
+https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/%E3%82%B4%E3%83%BC%E3%83%AB%E3%83%89%E3%82%B7%E3%83%81%E3%83%BC.png
+
+
