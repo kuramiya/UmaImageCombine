@@ -1,5 +1,3 @@
-import * as bootstrap from "./bootstrap-5.0.2-dist/js/bootstrap.bundle.js";
-
 //  最大行数
 const maxRowCount = 4;
 
@@ -7,7 +5,7 @@ const maxRowCount = 4;
 const maxColumnCount = 4;
 
 //  現在のキャンバスサイズ
-let currentCanvasSize = 600;
+let currentCanvasMaxSize_px = 600;
 
 //  現在の行数
 let currentRowCount = 2;
@@ -28,13 +26,16 @@ for (let rowIndex = 0; rowIndex < maxRowCount; rowIndex++)
 }
 
 //  配置画像を表示する処理
-function showImages(ctx)
+function showImages()
 {
-    //  キャンバスをクリアする
-    ctx.clearRect(0, 0, currentCanvasSize, currentCanvasSize);
+    let canvas = document.querySelector("#outputCanvas");
+    let ctx = canvas.getContext("2d");
 
-    let rowSize_px = currentCanvasSize / currentRowCount;
-    let colSize_px = currentCanvasSize / currentColumnCount;
+    //  キャンバスをクリアする
+    ctx.clearRect(0, 0, currentCanvasMaxSize_px, currentCanvasMaxSize_px);
+
+    let rowSize_px = currentCanvasMaxSize_px / currentRowCount;
+    let colSize_px = currentCanvasMaxSize_px / currentColumnCount;
     let baseSize_px = 0;
     if(rowSize_px > colSize_px)
     {
@@ -60,21 +61,16 @@ function showImages(ctx)
     }
 }
 
-//  画像サイズコンボボックスが変更された時の処理
-function canvasSizeChange(e)
+//  画像サイズ（最大サイズ）コンボボックスが変更された時の処理
+function changeCanvasMaxSize(e)
 {
-    currentCanvasSize = parseInt(e.target.value);
-
-    let canvas = document.querySelector("#outputCanvas");
-
-    canvas.width = currentCanvasSize;
-    canvas.height = currentCanvasSize;
+    currentCanvasMaxSize_px = parseInt(e.target.value);
 
     updateCanvas();
 }
 
 //  行数コンボボックスが変更された時の処理
-function rowCountChange(e)
+function changeRowCount(e)
 {
     currentRowCount = parseInt(e.target.value);
 
@@ -83,7 +79,7 @@ function rowCountChange(e)
 }
 
 //  列数コンボボックスが変更された時の処理
-function columnCountChange(e)
+function changeColumnCount(e)
 {
     currentColumnCount = parseInt(e.target.value);
 
@@ -92,6 +88,7 @@ function columnCountChange(e)
 }
 
 //  キャンバス内がクリックされた時の処理（画像選択処理の開始）
+//  クリック処理は使用してないため、このメソッドは呼びされていない
 function canvasClick(e)
 {
     let rect = e.target.getBoundingClientRect();
@@ -99,20 +96,38 @@ function canvasClick(e)
     let clickPosY = e.clientY - rect.top;
 
     console.log("x pos:" + clickPosX + " y pos:" + clickPosY);
-
-    //  これはダメ、モジュールとしてロードできない
-    var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-    
-    myModal.show();
 }
 
-//  画像を再描画する処理
+//  画像のサイズを更新する処理
+function updateCanvasSize()
+{
+    let canvas = document.querySelector("#outputCanvas");
+
+    //  画像の縦幅横幅を設定する
+    if(currentRowCount == currentColumnCount)
+    {
+        canvas.width = currentCanvasMaxSize_px;
+        canvas.height = currentCanvasMaxSize_px;    
+    }
+    else if(currentRowCount > currentColumnCount)
+    {
+        //  行のほうが大きい場合
+        canvas.width = (currentCanvasMaxSize_px / currentRowCount) * currentColumnCount;
+        canvas.height = currentCanvasMaxSize_px;
+    }
+    else
+    {
+        //  列のほうが大きい場合
+        canvas.width = currentCanvasMaxSize_px;
+        canvas.height = (currentCanvasMaxSize_px / currentColumnCount) * currentRowCount;
+    }
+}
+
+//  画像を更新する処理
 function updateCanvas()
 {
-    const board = document.querySelector("#outputCanvas");
-    const ctx = board.getContext("2d");
-
-    showImages(ctx);
+    updateCanvasSize();
+    showImages();
 }
 
 //  画像選択ボタンを更新する処理
@@ -139,10 +154,10 @@ function updateButtons()
 }
 
 //  イベント登録
-document.querySelector("#canvasSizeSelect").addEventListener("change", canvasSizeChange, false); 
-document.querySelector("#rowCountSelect").addEventListener("change", rowCountChange, false); 
-document.querySelector("#columnCountSelect").addEventListener("change", columnCountChange, false); 
-document.querySelector("#outputCanvas").addEventListener("click", canvasClick, false);
+document.querySelector("#canvasSizeSelect").addEventListener("change", changeCanvasMaxSize, false); 
+document.querySelector("#rowCountSelect").addEventListener("change", changeRowCount, false); 
+document.querySelector("#columnCountSelect").addEventListener("change", changeColumnCount, false); 
+// document.querySelector("#outputCanvas").addEventListener("click", canvasClick, false);
 
 window.onload = () =>
 {
