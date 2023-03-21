@@ -222,10 +222,20 @@ function selectCharacter(e)
     document.querySelector("#" + clickedCharacterSelectButtonId).textContent = characterName;
 }
 
+//  キャンバス画像をダウンロードする
+function downloadImage(e)
+{
+    const a = document.createElement("a");
+    a.href = document.querySelector("#outputCanvas").toDataURL("image/png", 1); // PNGなら"image/png"
+    a.download = "uma.png";
+    a.click();
+}
+
 //  イベント登録
 document.querySelector("#canvasSizeSelect").addEventListener("change", changeCanvasMaxSize, false); 
 document.querySelector("#rowCountSelect").addEventListener("change", changeRowCount, false); 
 document.querySelector("#columnCountSelect").addEventListener("change", changeColumnCount, false); 
+document.querySelector("#downloadButton").addEventListener("click", downloadImage, false); 
 document.querySelector("#clearSelectButton").addEventListener("click", clearSelect, false); 
 // document.querySelector("#outputCanvas").addEventListener("click", canvasClick, false);
 document.querySelector("#exampleModal").addEventListener("shown.bs.modal", setCharacterPosition, false);
