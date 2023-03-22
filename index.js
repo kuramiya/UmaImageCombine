@@ -78,10 +78,10 @@ function showImages()
 
             let image = new Image();
             image.crossOrigin = "anonymous";
-            image.src = imageArray[tagName];
             image.onload = () => {
                 ctx.drawImage(image, colIndex * baseSize_px , rowIndex * baseSize_px, baseSize_px, baseSize_px);
             };
+            image.src = imageArray[tagName];
         }
     }
 }
