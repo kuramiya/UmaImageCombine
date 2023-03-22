@@ -19,8 +19,12 @@ let clickedCharacterSelectButtonId = "";
 //  画像配置用の連想配列
 //  row0column0といった名前で保存する
 //  まずはnull画像で初期化しておく
-let imageArray = {};
+let imagePosition_CharacterPathArray = {};
 initCanvas();
+
+//  画像のパスと画像オブジェクトを登録しておく連想配列
+//  すでに読み出されている画像を使用する
+let characterPath_ImageArray = {};
 
 //  キャンバス設定を初期化する処理
 function initCanvas()
@@ -29,8 +33,20 @@ function initCanvas()
     {
         for (let columnIndex = 0; columnIndex < maxColumnCount; columnIndex++)
         {
-            imageArray["row" + rowIndex + "column" + columnIndex] = "./image/空白.png";
+            imagePosition_CharacterPathArray["row" + rowIndex + "column" + columnIndex] = "./image/空白.png";
         }
+    }
+}
+
+//  画像のパスと画像オブジェクトを登録する
+function setImageArray()
+{
+    let characterButtonsRow = document.querySelector("#characterButtonsRow");
+    let characterButtons = characterButtonsRow.querySelectorAll("button");
+    for(let button of characterButtons)
+    {
+        let image = button.firstChild;
+        characterPath_ImageArray[image.src] = image;
     }
 }
 
@@ -74,14 +90,10 @@ function showImages()
     {
         for (let colIndex = 0; colIndex < currentColumnCount; colIndex++)
         {
-            let tagName = "row" + rowIndex + "column" + colIndex;
-
-            let image = new Image();
-            image.crossOrigin = "anonymous";
-            image.onload = () => {
-                ctx.drawImage(image, colIndex * baseSize_px , rowIndex * baseSize_px, baseSize_px, baseSize_px);
-            };
-            image.src = imageArray[tagName];
+            let position = "row" + rowIndex + "column" + colIndex;
+            let imagePath = imagePosition_CharacterPathArray[position];
+            let image = characterPath_ImageArray[imagePath];
+            ctx.drawImage(image, colIndex * baseSize_px , rowIndex * baseSize_px, baseSize_px, baseSize_px);
         }
     }
 }
@@ -209,7 +221,7 @@ function selectCharacter(e)
 
     let tagName = clickedCharacterSelectButtonId.replace("button", "");
 
-    imageArray[tagName] = imgElement.src;
+    imagePosition_CharacterPathArray[tagName] = imgElement.src;
 
     let paths = imgElement.src.split("/");
 
@@ -250,8 +262,10 @@ for(let button of characterButtons)
     button.addEventListener("click", selectCharacter, false);
 }
 
+//  画像登録
+setImageArray();
+
 window.onload = () =>
 {
     updateCanvas();
 };
-
