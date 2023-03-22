@@ -20,20 +20,21 @@ let clickedCharacterSelectButtonId = "";
 //  row0column0といった名前で保存する
 //  まずはnull画像で初期化しておく
 let imagePosition_CharacterPathArray = {};
-initCanvas();
+initImagePosition();
 
 //  画像のパスと画像オブジェクトを登録しておく連想配列
 //  すでに読み出されている画像を使用する
 let characterPath_ImageArray = {};
 
 //  キャンバス設定を初期化する処理
-function initCanvas()
+function initImagePosition()
 {
+    let nullImagePath = document.querySelector("#nullImage").src;
     for (let rowIndex = 0; rowIndex < maxRowCount; rowIndex++)
     {
         for (let columnIndex = 0; columnIndex < maxColumnCount; columnIndex++)
         {
-            imagePosition_CharacterPathArray["row" + rowIndex + "column" + columnIndex] = "./image/空白.png";
+            imagePosition_CharacterPathArray["row" + rowIndex + "column" + columnIndex] = nullImagePath;
         }
     }
 }
@@ -127,7 +128,7 @@ function changeColumnCount(e)
 //  選択状態をクリアする処理
 function clearSelect(e)
 {
-    initCanvas();
+    initImagePosition();
     clearCharacterSelectButtons();
 
     updateCanvas();
