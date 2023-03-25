@@ -29,26 +29,6 @@ initImagePosition();
 //  すでに読み出されている画像を使用する
 let characterPath_ImageArray = {};
 
-//  キャンバスの横サイズの設定を返す
-//  横半分モードを考慮したものを返す
-function getCanvasSizeWidth()
-{
-    if(isWidthHalfMode)
-    {
-        return currentCanvasMaxSize_px / 2;
-    }
-    else
-    {
-        return currentCanvasMaxSize_px;
-    }
-}
-
-//  キャンバスの縦サイズの設定を返す
-function getCanvasSizeHeight()
-{
-    return currentCanvasMaxSize_px;
-}
-
 //  キャンバス設定を初期化する処理
 function initImagePosition()
 {
@@ -168,6 +148,33 @@ function clearSelect(e)
     updateCanvas();
 }
 
+//  ランダムでキャラを配置する
+function randomSelect(e)
+{
+    //  キャラの配置配列をランダムに設定する
+    //  合わせてボタンの表示も更新する
+    for (let rowIndex = 0; rowIndex < maxRowCount; rowIndex++)
+    {
+        for (let columnIndex = 0; columnIndex < maxColumnCount; columnIndex++)
+        {
+            //  キャラ画像のパス（キー）とキャラ画像を収めた連想配列のキー配列を取得する
+            let characterImageKeys = Object.keys(characterPath_ImageArray);
+
+            let randomIndex = Math.floor(Math.random() * characterImageKeys.length)
+            let characterPath = characterImageKeys[randomIndex];
+
+            imagePosition_CharacterPathArray["row" + rowIndex + "column" + columnIndex] = characterPath;
+
+            let characterName = getCharacterNameFromImagePath(characterPath);
+
+            document.querySelector("#row" + rowIndex + "column" + columnIndex + "button").textContent = characterName;
+        }
+    }
+
+    //  画像を更新する
+    updateCanvas();
+}
+
 //  キャンバス内がクリックされた時の処理（画像選択処理の開始）
 //  クリック処理は使用してないため、このメソッドは呼びされていない
 function canvasClick(e)
@@ -247,6 +254,21 @@ function setCharacterPosition(e)
     clickedCharacterSelectButtonId = e.relatedTarget.id;
 }
 
+//  キャラ名をキャラ画像のパスから取得する
+function getCharacterNameFromImagePath(imagePath)
+{
+    let paths = imagePath.split("/");
+
+    let characterName = paths[paths.length - 1].replace(".png", "");
+
+    if(characterName.substr(0, 1) == "%")
+    {
+        characterName = decodeURI(characterName);
+    }
+
+    return characterName;
+}
+
 //  キャラが選択された時の処理
 function selectCharacter(e)
 {
@@ -264,14 +286,7 @@ function selectCharacter(e)
 
     imagePosition_CharacterPathArray[tagName] = imgElement.src;
 
-    let paths = imgElement.src.split("/");
-
-    let characterName = paths[paths.length - 1].replace(".png", "");
-
-    if(characterName.substr(0, 1) == "%")
-    {
-        characterName = decodeURI(characterName);
-    }
+    let characterName = getCharacterNameFromImagePath(imgElement.src);
 
     document.querySelector("#" + clickedCharacterSelectButtonId).textContent = characterName;
 }
@@ -293,6 +308,7 @@ document.querySelector("#columnCountSelect").addEventListener("change", changeCo
 document.querySelector("#widthHalfModeCheckBox").addEventListener("change", changeWidthHalfMode, false); 
 document.querySelector("#downloadButton").addEventListener("click", downloadImage, false); 
 document.querySelector("#clearSelectButton").addEventListener("click", clearSelect, false); 
+document.querySelector("#randomButton").addEventListener("click", randomSelect, false); 
 // document.querySelector("#outputCanvas").addEventListener("click", canvasClick, false);
 document.querySelector("#exampleModal").addEventListener("shown.bs.modal", setCharacterPosition, false);
 document.querySelector("#exampleModal").addEventListener("hidden.bs.modal", updateCanvas, false);
