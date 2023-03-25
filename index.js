@@ -13,6 +13,9 @@ let currentRowCount = 2;
 //  現在の列数
 let currentColumnCount = 2;
 
+//  横半分モード
+let isWidthHalfMode = false;
+
 //  クリックされたキャラ選択ボタンのID
 let clickedCharacterSelectButtonId = "";
 
@@ -25,6 +28,26 @@ initImagePosition();
 //  画像のパスと画像オブジェクトを登録しておく連想配列
 //  すでに読み出されている画像を使用する
 let characterPath_ImageArray = {};
+
+//  キャンバスの横サイズの設定を返す
+//  横半分モードを考慮したものを返す
+function getCanvasSizeWidth()
+{
+    if(isWidthHalfMode)
+    {
+        return currentCanvasMaxSize_px / 2;
+    }
+    else
+    {
+        return currentCanvasMaxSize_px;
+    }
+}
+
+//  キャンバスの縦サイズの設定を返す
+function getCanvasSizeHeight()
+{
+    return currentCanvasMaxSize_px;
+}
 
 //  キャンバス設定を初期化する処理
 function initImagePosition()
@@ -69,23 +92,14 @@ function showImages()
     let ctx = canvas.getContext("2d");
 
     //  キャンバスをクリアする
-    ctx.clearRect(0, 0, currentCanvasMaxSize_px, currentCanvasMaxSize_px);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     //  キャンバスの背景を白く塗っておく
     ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, currentCanvasMaxSize_px, currentCanvasMaxSize_px);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    let rowSize_px = currentCanvasMaxSize_px / currentRowCount;
-    let colSize_px = currentCanvasMaxSize_px / currentColumnCount;
-    let baseSize_px = 0;
-    if(rowSize_px > colSize_px)
-    {
-        baseSize_px = colSize_px;
-    }
-    else
-    {
-        baseSize_px = rowSize_px;
-    }
+    let cellWidth = canvas.width / currentColumnCount;
+    let cellHeight = canvas.height / currentRowCount;
 
     for (let rowIndex = 0; rowIndex < currentRowCount; rowIndex++)
     {
@@ -94,7 +108,14 @@ function showImages()
             let position = "row" + rowIndex + "column" + colIndex;
             let imagePath = imagePosition_CharacterPathArray[position];
             let image = characterPath_ImageArray[imagePath];
-            ctx.drawImage(image, colIndex * baseSize_px , rowIndex * baseSize_px, baseSize_px, baseSize_px);
+            if(isWidthHalfMode)
+            {
+                ctx.drawImage(image, 100, 0, 200, 400, colIndex * cellWidth , rowIndex * cellHeight, cellWidth, cellHeight);
+            }
+            else
+            {
+                ctx.drawImage(image, colIndex * cellWidth , rowIndex * cellHeight, cellWidth, cellHeight);
+            }
         }
     }
 }
@@ -125,6 +146,19 @@ function changeColumnCount(e)
     updateCanvas();
 }
 
+function changeWidthHalfMode(e)
+{
+    if(e.target.checked)
+    {
+        isWidthHalfMode = true;
+    }
+    else
+    {
+        isWidthHalfMode = false;
+    }
+    updateCanvas();
+}
+
 //  選択状態をクリアする処理
 function clearSelect(e)
 {
@@ -150,23 +184,29 @@ function updateCanvasSize()
 {
     let canvas = document.querySelector("#outputCanvas");
 
+    let adjustedColumnCount = currentColumnCount;
+    if(isWidthHalfMode)
+    {
+        adjustedColumnCount = currentColumnCount / 2;
+    }
+
     //  画像の縦幅横幅を設定する
-    if(currentRowCount == currentColumnCount)
+    if(currentRowCount == adjustedColumnCount)
     {
         canvas.width = currentCanvasMaxSize_px;
-        canvas.height = currentCanvasMaxSize_px;    
+        canvas.height = currentCanvasMaxSize_px;   
     }
-    else if(currentRowCount > currentColumnCount)
+    else if(currentRowCount > adjustedColumnCount)
     {
         //  行のほうが大きい場合
-        canvas.width = (currentCanvasMaxSize_px / currentRowCount) * currentColumnCount;
+        canvas.width = (currentCanvasMaxSize_px / currentRowCount) * adjustedColumnCount;
         canvas.height = currentCanvasMaxSize_px;
     }
     else
     {
         //  列のほうが大きい場合
         canvas.width = currentCanvasMaxSize_px;
-        canvas.height = (currentCanvasMaxSize_px / currentColumnCount) * currentRowCount;
+        canvas.height = (currentCanvasMaxSize_px / adjustedColumnCount) * currentRowCount;
     }
 }
 
@@ -250,6 +290,7 @@ function downloadImage(e)
 document.querySelector("#canvasSizeSelect").addEventListener("change", changeCanvasMaxSize, false); 
 document.querySelector("#rowCountSelect").addEventListener("change", changeRowCount, false); 
 document.querySelector("#columnCountSelect").addEventListener("change", changeColumnCount, false); 
+document.querySelector("#widthHalfModeCheckBox").addEventListener("change", changeWidthHalfMode, false); 
 document.querySelector("#downloadButton").addEventListener("click", downloadImage, false); 
 document.querySelector("#clearSelectButton").addEventListener("click", clearSelect, false); 
 // document.querySelector("#outputCanvas").addEventListener("click", canvasClick, false);
