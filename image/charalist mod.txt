@@ -63,9 +63,10 @@
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ナリタブライアン.png" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ニシノフラワー.png" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ネオユニヴァース.png" width="50" height="50"/></button>
+<button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ノースフライト.png" width="50" height="50"/></button>
+<button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/バイアリーターク.png" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ハッピーミーク.png" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ハルウララ.png" width="50" height="50"/></button>
-<button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/バイアリーターク.png" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/バンブーメモリー.png" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ヒシアケボノ.png" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ヒシアマゾン.png" width="50" height="50"/></button>
