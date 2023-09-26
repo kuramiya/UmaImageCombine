@@ -4,8 +4,14 @@ const maxRowCount = 4;
 //  最大列数
 const maxColumnCount = 4;
 
+//  画像のサイズ
+const defaultImageSize_px = 400;
+
 //  現在のキャンバスサイズ
-let currentCanvasMaxSize_px = 450;
+let currentCanvasMaxSize_px = 600;
+
+//  画像生サイズモードのフラグ
+let isImageRawSizeMode = false;
 
 //  現在の行数
 let currentRowCount = 2;
@@ -103,7 +109,25 @@ function showImages()
 //  画像サイズ（最大サイズ）コンボボックスが変更された時の処理
 function changeCanvasMaxSize(e)
 {
-    currentCanvasMaxSize_px = parseInt(e.target.value);
+    if(e.target.value == "raw")
+    {
+        isImageRawSizeMode = true;
+
+        if(currentRowCount > currentColumnCount)
+        {
+            currentCanvasMaxSize_px = currentRowCount * defaultImageSize_px;
+        }
+        else
+        {
+            currentCanvasMaxSize_px = currentColumnCount * defaultImageSize_px;
+        }
+    }
+    else
+    {
+        isImageRawSizeMode = false;
+
+        currentCanvasMaxSize_px = parseInt(e.target.value);        
+    }
 
     updateCanvas();
 }
@@ -191,29 +215,44 @@ function updateCanvasSize()
 {
     let canvas = document.querySelector("#outputCanvas");
 
-    let adjustedColumnCount = currentColumnCount;
-    if(isWidthHalfMode)
+    if(isImageRawSizeMode)
     {
-        adjustedColumnCount = currentColumnCount / 2;
-    }
-
-    //  画像の縦幅横幅を設定する
-    if(currentRowCount == adjustedColumnCount)
-    {
-        canvas.width = currentCanvasMaxSize_px;
-        canvas.height = currentCanvasMaxSize_px;   
-    }
-    else if(currentRowCount > adjustedColumnCount)
-    {
-        //  行のほうが大きい場合
-        canvas.width = (currentCanvasMaxSize_px / currentRowCount) * adjustedColumnCount;
-        canvas.height = currentCanvasMaxSize_px;
+        if(isWidthHalfMode)
+        {
+            canvas.width = currentColumnCount * defaultImageSize_px / 2;
+        }
+        else
+        {
+            canvas.width = currentColumnCount * defaultImageSize_px;
+        }
+        canvas.height = currentRowCount * defaultImageSize_px;
     }
     else
     {
-        //  列のほうが大きい場合
-        canvas.width = currentCanvasMaxSize_px;
-        canvas.height = (currentCanvasMaxSize_px / adjustedColumnCount) * currentRowCount;
+        let adjustedColumnCount = currentColumnCount;
+        if(isWidthHalfMode)
+        {
+            adjustedColumnCount = currentColumnCount / 2;
+        }
+    
+        //  画像の縦幅横幅を設定する
+        if(currentRowCount == adjustedColumnCount)
+        {
+            canvas.width = currentCanvasMaxSize_px;
+            canvas.height = currentCanvasMaxSize_px;   
+        }
+        else if(currentRowCount > adjustedColumnCount)
+        {
+            //  行のほうが大きい場合
+            canvas.width = (currentCanvasMaxSize_px / currentRowCount) * adjustedColumnCount;
+            canvas.height = currentCanvasMaxSize_px;
+        }
+        else
+        {
+            //  列のほうが大きい場合
+            canvas.width = currentCanvasMaxSize_px;
+            canvas.height = (currentCanvasMaxSize_px / adjustedColumnCount) * currentRowCount;
+        }    
     }
 }
 
