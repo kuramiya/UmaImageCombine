@@ -57,6 +57,7 @@
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/デアリングタクト.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/テイエムオペラオー.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/トウカイテイオー.png" crossorigin="anonymous" width="50" height="50"/></button>
+<button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ドゥラメンテ.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/トーセンジョーダン.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ナイスネイチャ.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ナカヤマフェスタ.png" crossorigin="anonymous" width="50" height="50"/></button>
