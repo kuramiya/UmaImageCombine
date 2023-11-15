@@ -6,6 +6,8 @@
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/イクノディクタス.png" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/イナリワン.png" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ウイニングチケット.png" width="50" height="50"/></button>
+<button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ヴィブロス.png" width="50" height="50"/></button>
+<button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ヴィルシーナ.png" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ウオッカ.png" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/エアグルーヴ.png" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/エアシャカール.png" width="50" height="50"/></button>
