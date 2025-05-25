@@ -56,6 +56,7 @@
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/シンボリルドルフ.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/スイープトウショウ.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/スーパークリーク.png" crossorigin="anonymous" width="50" height="50"/></button>
+<button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ステイゴールド.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/スティルインラブ.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/スピードシンボリ.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/スペシャルウィーク.png" crossorigin="anonymous" width="50" height="50"/></button>
