@@ -104,6 +104,7 @@
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ライトハロー.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/リガントーナ.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/リトルココン.png" crossorigin="anonymous" width="50" height="50"/></button>
+<button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/レッドディザイア.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ロイスアンドロイス.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/ワンダーアキュート.png" crossorigin="anonymous" width="50" height="50"/></button>
 <button type="button" data-bs-dismiss="modal" class="col-auto btn"><img src="https://raw.githubusercontent.com/kuramiya/UmaPositioningMap/main/chara/安心沢刺々美.png" crossorigin="anonymous" width="50" height="50"/></button>
